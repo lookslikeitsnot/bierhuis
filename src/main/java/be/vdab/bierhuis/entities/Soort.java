@@ -2,29 +2,23 @@ package be.vdab.bierhuis.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
-import org.springframework.format.annotation.NumberFormat;
-import org.springframework.format.annotation.NumberFormat.Style;
 
-import be.vdab.bierhuis.valueobjects.Adres;
 import be.vdab.constraints.Naam;
 
 @Entity
-@Table(name = "brouwers")
-public class Brouwer implements Serializable {
+@Table(name = "soorten")
+public class Soort implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -32,16 +26,12 @@ public class Brouwer implements Serializable {
 	@NotNull
 	@Naam
 	private String naam;
-	@NumberFormat(style = Style.NUMBER)
-	@NotNull
-	@Min(0)
-	@Digits(integer = 10, fraction = 2)
-	private Integer omzet;
-	@Valid
-	@Embedded
-	private Adres adres;
 
-	public Brouwer() {
+	public Soort() {
+	}
+
+	public Soort(@SafeHtml(whitelistType = WhiteListType.NONE) @NotNull String naam) {
+		this.naam = naam;
 	}
 
 	public String getNaam() {
@@ -52,22 +42,6 @@ public class Brouwer implements Serializable {
 		this.naam = naam;
 	}
 
-	public Integer getOmzet() {
-		return omzet;
-	}
-
-	public void setOmzet(Integer omzet) {
-		this.omzet = omzet;
-	}
-
-	public Adres getAdres() {
-		return adres;
-	}
-
-	public void setAdres(Adres adres) {
-		this.adres = adres;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -76,7 +50,6 @@ public class Brouwer implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((adres == null) ? 0 : adres.hashCode());
 		result = prime * result + ((naam == null) ? 0 : naam.hashCode());
 		return result;
 	}
@@ -89,12 +62,7 @@ public class Brouwer implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Brouwer other = (Brouwer) obj;
-		if (adres == null) {
-			if (other.adres != null)
-				return false;
-		} else if (!adres.equals(other.adres))
-			return false;
+		Soort other = (Soort) obj;
 		if (naam == null) {
 			if (other.naam != null)
 				return false;
