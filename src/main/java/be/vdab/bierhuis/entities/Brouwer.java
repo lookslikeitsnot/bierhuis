@@ -1,12 +1,14 @@
 package be.vdab.bierhuis.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
@@ -39,6 +41,8 @@ public class Brouwer implements Serializable {
 	@Min(0)
 	@Digits(integer = 10, fraction = 2)
 	private Integer omzet;
+	@OneToMany(mappedBy = "brouwer")
+	private Set<Bier> bieren;
 
 	public Brouwer() {
 	}
@@ -69,6 +73,14 @@ public class Brouwer implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	public Set<Bier> getBieren() {
+		return bieren;
+	}
+
+	public void setBieren(Set<Bier> bieren) {
+		this.bieren = bieren;
 	}
 
 	@Override

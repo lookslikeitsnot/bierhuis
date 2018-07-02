@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html (pageTitle='Brouwers')"></head>
+<body>
+	<nav th:replace="fragments/menu.html"></nav>
+	<h1 th:text="${bier.naam}">naam</h1>
+	<dl>
+		<dt>Alcohol</dt>
+		<dd th:text="${bier.naam}">alcohol</dd>
+		<dt>Prijs</dt>
+		<dd th:text="${#numbers.formatCurrency(bier.prijs)}">prijs</dd>
+		<dt>Soort</dt>
+		<dd th:text="${bier.soort.naam}">soort</dd>
+		<dt>Brouwer</dt>
+		<dd th:text="${bier.brouwer.naam}">brouwer</dd>
+	</dl>
+
+</body>
+</html>

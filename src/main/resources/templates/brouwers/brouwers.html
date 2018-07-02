@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html (pageTitle='Brouwers')"></head>
+<body>
+	<nav th:replace="fragments/menu.html"></nav>
+	<h1>Brouwers</h1>
+	<table>
+		<tr th:each='brouwer : ${brouwers}'>
+			<td><a th:href="@{'brouwers/{id}'(id=${brouwer.id})}"
+				th:text="${brouwer.naam} + ' (' +${brouwer.adres.gemeente}+')'">brouwer</a></td>
+		</tr>
+	</table>
+</body>
+</html>
