@@ -4,16 +4,25 @@
 <body>
 	<nav th:replace="fragments/menu.html"></nav>
 	<h1 th:text="${bier.naam}">naam</h1>
-	<dl>
-		<dt>Alcohol</dt>
-		<dd th:text="${bier.naam}">alcohol</dd>
-		<dt>Prijs</dt>
-		<dd th:text="${#numbers.formatCurrency(bier.prijs)}">prijs</dd>
-		<dt>Soort</dt>
-		<dd th:text="${bier.soort.naam}">soort</dd>
-		<dt>Brouwer</dt>
-		<dd th:text="${bier.brouwer.naam}">brouwer</dd>
-	</dl>
+	<form method='post' th:action="@{'/bieren/{id}'(id=${bier.id})}" th:object='${aantalForm}'>
+		<dl>
+			<dt>Alcohol</dt>
+			<dd th:text="${bier.naam}">alcohol</dd>
+			<dt>Prijs</dt>
+			<dd th:text="${#numbers.formatCurrency(bier.prijs)}">prijs</dd>
+			<dt>Soort</dt>
+			<dd th:text="${bier.soort.naam}">soort</dd>
+			<dt>Brouwer</dt>
+			<dd th:text="${bier.brouwer.naam}">brouwer</dd>
+			<dt>Aantal</dt>
+			<dd>
+				<input th:field='*{aantal}' autofocus='autofocus' /> <span
+					th:if="${#fields.hasErrors('*{aantal}')}" th:errors='*{aantal}'></span>
+			</dd>
+
+		</dl>
+		<input type='submit' value='Toevoegen'/>
+	</form>
 
 </body>
 </html>
