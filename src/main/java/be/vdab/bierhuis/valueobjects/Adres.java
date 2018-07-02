@@ -25,9 +25,9 @@ public class Adres implements Serializable {
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	@NotBlank
 	@Length(min = 1, max = 10)
-	private String huisNr;
+	private String huisnr;
 	@NotNull
-	@NumberFormat(style = Style.NUMBER) // opmaak annotation die er al stond
+	@NumberFormat(style = Style.NUMBER)
 	@NotNull
 	@Min(1000)
 	@Max(9999)
@@ -37,12 +37,39 @@ public class Adres implements Serializable {
 	@Length(min = 1, max = 50)
 	private String gemeente;
 
+	public Adres() {
+	}
+
+	public Adres(String straat, String huisnr, Integer postcode, String gemeente) {
+		this.straat = straat;
+		this.huisnr = huisnr;
+		this.postcode = postcode;
+		this.gemeente = gemeente;
+	}
+	
+
+	public String getStraat() {
+		return straat;
+	}
+
+	public String getHuisNr() {
+		return huisnr;
+	}
+
+	public Integer getPostcode() {
+		return postcode;
+	}
+
+	public String getGemeente() {
+		return gemeente;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((gemeente == null) ? 0 : gemeente.hashCode());
-		result = prime * result + ((huisNr == null) ? 0 : huisNr.hashCode());
+		result = prime * result + ((huisnr == null) ? 0 : huisnr.hashCode());
 		result = prime * result + ((postcode == null) ? 0 : postcode.hashCode());
 		result = prime * result + ((straat == null) ? 0 : straat.hashCode());
 		return result;
@@ -62,10 +89,10 @@ public class Adres implements Serializable {
 				return false;
 		} else if (!gemeente.equals(other.gemeente))
 			return false;
-		if (huisNr == null) {
-			if (other.huisNr != null)
+		if (huisnr == null) {
+			if (other.huisnr != null)
 				return false;
-		} else if (!huisNr.equals(other.huisNr))
+		} else if (!huisnr.equals(other.huisnr))
 			return false;
 		if (postcode == null) {
 			if (other.postcode != null)

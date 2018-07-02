@@ -32,14 +32,13 @@ public class Brouwer implements Serializable {
 	@NotNull
 	@Naam
 	private String naam;
-	@NumberFormat(style = Style.NUMBER)
-	@NotNull
-	@Min(0)
-	@Digits(integer = 10, fraction = 2)
-	private Integer omzet;
 	@Valid
 	@Embedded
 	private Adres adres;
+	@NumberFormat(style = Style.NUMBER)
+	@Min(0)
+	@Digits(integer = 10, fraction = 2)
+	private Integer omzet;
 
 	public Brouwer() {
 	}
