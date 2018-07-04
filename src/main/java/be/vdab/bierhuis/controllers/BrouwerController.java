@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.bierhuis.entities.Brouwer;
 import be.vdab.bierhuis.services.BrouwerService;
+import be.vdab.exceptions.BrouwerNietGevondenException;
 
 @RestController
 @RequestMapping("/brouwers")
@@ -15,20 +16,21 @@ public class BrouwerController {
 	private final static String VIEW_BROUWERS = "brouwers/brouwers";
 	private final static String VIEW_BROUWER = "brouwers/brouwer";
 	private final BrouwerService brouwerService;
-	
+
 	public BrouwerController(BrouwerService brouwerService) {
 		this.brouwerService = brouwerService;
 	}
-	
+
 	@GetMapping
 	ModelAndView brouwers() {
 		return new ModelAndView(VIEW_BROUWERS).addObject("brouwers", brouwerService.findAll());
 	}
-	
+
 	@GetMapping("{brouwer}")
 	ModelAndView brouwer(@PathVariable Brouwer brouwer) {
-		return new ModelAndView(VIEW_BROUWER).addObject(brouwerService.findById(brouwer.getId()));
+		if (brouwer == null) {
+			throw new BrouwerNietGevondenException();
+		}
+		return new ModelAndView(VIEW_BROUWER).addObject(brouwer);
 	}
-	
-	
 }

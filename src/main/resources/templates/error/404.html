@@ -1,8 +1,8 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head.html (pageTitle='Fout')"></head>
+<head th:replace="fragments/head.html (pageTitle=#{error.error})"></head>
 <body>
 	<nav th:replace="fragments/menu.html"></nav>
-	<h1>Pagina niet gevonden !</h1>
+	<h1 th:text="#{error.notfound}"></h1>
 </body>
 </html>

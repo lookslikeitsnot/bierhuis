@@ -2,6 +2,9 @@ package be.vdab.bierhuis.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
-import org.springframework.format.annotation.NumberFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 import be.vdab.constraints.Naam;
@@ -43,7 +46,7 @@ public class Bier implements Serializable {
 	@NotNull
 	@Min(0)
 	private Integer alcohol;
-	@NumberFormat(style = Style.NUMBER)
+	@org.springframework.format.annotation.NumberFormat(style = Style.NUMBER)
 	@NotNull
 	@Min(0)
 	@Digits(integer = 10, fraction = 2)
@@ -95,6 +98,13 @@ public class Bier implements Serializable {
 
 	public BigDecimal getPrijs() {
 		return prijs;
+	}
+	
+	public String getLocalPrijs() {
+		NumberFormat numberFormat =  NumberFormat.getCurrencyInstance(LocaleContextHolder.getLocale());
+		numberFormat.setCurrency(Currency.getInstance(Locale.GERMANY));
+		return numberFormat.format(prijs);
+		
 	}
 
 	public void setPrijs(BigDecimal prijs) {

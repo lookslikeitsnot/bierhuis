@@ -1,19 +1,19 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head.html (pageTitle='Brouwers')"></head>
+<head th:replace="fragments/head.html (pageTitle=#{winkelwagen.cart})"></head>
 <body>
 	<nav th:replace="fragments/menu.html"></nav>
-	<h1>Winkelwagen</h1>
+	<h1 th:text='#{winkelwagen.cart}'>Winkelwagen</h1>
 	<div
 		th:if="${session.winkelwagen != null and not session.winkelwagen.winkelwagen.isEmpty()}">
 		<article>
 			<table>
 				<thead>
 					<tr>
-						<th>Bier</th>
-						<th>Prijs</th>
-						<th>Aantal</th>
-						<th>Te betalen</th>
+						<th th:text='#{winkelwagen.beer}'>Bier</th>
+						<th  th:text='#{winkelwagen.price}'>Prijs</th>
+						<th th:text='#{winkelwagen.quantity}'>Aantal</th>
+						<th th:text='#{winkelwagen.topay}'>Te betalen</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -39,30 +39,30 @@
 			<form method='post' th:action="@{/winkelwagen}"
 				th:object='${winkelwagenForm}'>
 				<dl>
-					<dt>Naam</dt>
+					<dt th:text='#{winkelwagen.name}'>Naam</dt>
 					<dd>
 						<input th:field='*{naam}' autofocus='autofocus' /><span
 							th:if="${#fields.hasErrors('naam')}" th:errors='*{naam}'></span>
 					</dd>
-					<dt>Straat</dt>
+					<dt th:text='#{winkelwagen.street}'>Straat</dt>
 					<dd>
 						<input th:field='*{adres.straat}' /> <span
 							th:if="${#fields.hasErrors('adres.straat')}"
 							th:errors='*{adres.straat}'></span>
 					</dd>
-					<dt>Huisnummer</dt>
+					<dt th:text='#{winkelwagen.number}'>Huisnummer</dt>
 					<dd>
 						<input th:field='*{adres.huisnr}' /> <span
 							th:if="${#fields.hasErrors('adres.huisnr')}"
 							th:errors='*{adres.huisnr}'></span>
 					</dd>
-					<dt>Postcode</dt>
+					<dt th:text='#{winkelwagen.postal}'>Postcode</dt>
 					<dd>
 						<input th:field='*{adres.postcode}' /> <span
 							th:if="${#fields.hasErrors('adres.postcode')}"
 							th:errors='*{adres.postcode}'></span>
 					</dd>
-					<dt>Gemeente</dt>
+					<dt th:text='#{winkelwagen.city}'>Gemeente</dt>
 					<dd>
 						<input th:field='*{adres.gemeente}' /> <span
 							th:if="${#fields.hasErrors('adres.gemeente')}"
@@ -72,6 +72,10 @@
 				<input type='submit' value='Als bon bevestigen' />
 			</form>
 		</article>
+	</div>
+	<div
+		th:unless="${session.winkelwagen != null and not session.winkelwagen.winkelwagen.isEmpty()}">
+		<span th:text="#{winkelwagen.empty}"></span>
 	</div>
 </body>
 </html>
