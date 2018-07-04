@@ -29,4 +29,6 @@ public class BrouwerController {
 	ModelAndView brouwer(@PathVariable Brouwer brouwer) {
 		return new ModelAndView(VIEW_BROUWER).addObject(brouwerService.findById(brouwer.getId()));
 	}
+	
+	
 }

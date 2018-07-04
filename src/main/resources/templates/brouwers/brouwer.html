@@ -6,7 +6,8 @@
 	<h1 th:text="${brouwer.naam} + ' (' +${brouwer.adres.gemeente}+')'">naam</h1>
 	<table>
 		<tr th:each='bier : ${brouwer.bieren}'>
-			<td><a th:href="@{'/bieren/{id}'(id=${bier.id})}" th:text="${bier.naam}">bier</a></td>
+			<td><a th:href="@{'/bieren/{id}'(id=${bier.id})}"
+				th:text="${bier.naam}">bier</a></td>
 		</tr>
 	</table>
 </body>

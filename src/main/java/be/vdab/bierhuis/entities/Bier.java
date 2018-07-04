@@ -104,6 +104,14 @@ public class Bier implements Serializable {
 	public long getId() {
 		return id;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Bier [id=" + id + ", naam=" + naam + ", brouwer=" + brouwer + ", soort=" + soort + ", alcohol="
+				+ alcohol + ", prijs=" + prijs + "]";
+	}
 
 	@Override
 	public int hashCode() {

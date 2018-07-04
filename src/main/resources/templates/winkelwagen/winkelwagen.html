@@ -1,0 +1,24 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head.html (pageTitle='Brouwers')"></head>
+<body>
+	<nav th:replace="fragments/menu.html"></nav>
+	<h1>Winkelwagen</h1>
+	<div th:if="${session.winkelwagen != null and not session.winkelwagen.winkelwagen.isEmpty()}">
+		<table>
+			<tr>
+				<th>Bier</th>
+				<th>Prijs</th>
+				<th>Aantal</th>
+				<th>Te betalen</th>
+			</tr>
+			<tr th:each="winkelwagenlijn : ${session.winkelwagen.winkelwagen}">
+				<td th:text="${winkelwagenlijn.bier.naam}">Bier</td>
+				<td th:text="${#numbers.formatCurrency(winkelwagenlijn.bier.prijs)}">Prijs</td>
+				<td th:text="${winkelwagenlijn.aantal}">Aantal</td>
+				<td th:text="${#numbers.formatCurrency(winkelwagenlijn.teBetalen)}">Te betalen</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
