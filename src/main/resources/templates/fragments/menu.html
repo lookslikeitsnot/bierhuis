@@ -1,7 +1,14 @@
 <nav>
 	<ul>
-		<li><a th:href="@{'/'}">Welkom</a></li>
-		<li><a th:href="@{'/brouwers'}">Brouwers</a></li>
-		<li><a th:href="@{'/winkelwagen'}">Winkelwagen</a></li>
+		<li><a th:href="@{'/'}" th:text="#{menu.welcome}">>Welkom</a></li>
+		<li><a th:href="@{'/brouwers'}" th:text="#{menu.brewers}">Brouwers</a></li>
+		<li><a th:href="@{'/winkelwagen'}" th:text="#{menu.cart}">Winkelwagen</a></li>
+		<li><span th:text="#{lang.change}"></span>: <select id="locales">
+				<option value=""></option>
+				<option value="en" th:text="#{lang.en}"></option>
+				<option value="fr" th:text="#{lang.fr}"></option>
+				<option value="nl" th:text="#{lang.nl}"></option>
+		</select></li>
 	</ul>
 </nav>
+<div th:replace="fragments/locale.html"></div>

@@ -46,7 +46,6 @@ public class Adres implements Serializable {
 		this.postcode = postcode;
 		this.gemeente = gemeente;
 	}
-	
 
 	public String getStraat() {
 		return straat;
@@ -62,6 +61,26 @@ public class Adres implements Serializable {
 
 	public String getGemeente() {
 		return gemeente;
+	}
+
+	public String getHuisnr() {
+		return huisnr;
+	}
+
+	public void setHuisnr(String huisnr) {
+		this.huisnr = huisnr;
+	}
+
+	public void setStraat(String straat) {
+		this.straat = straat;
+	}
+
+	public void setPostcode(Integer postcode) {
+		this.postcode = postcode;
+	}
+
+	public void setGemeente(String gemeente) {
+		this.gemeente = gemeente;
 	}
 
 	@Override

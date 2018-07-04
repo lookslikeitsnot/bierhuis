@@ -1,10 +1,10 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head.html (pageTitle='Bierhuis')"></head>
+<head th:replace="fragments/head.html (pageTitle=#{homepage})"></head>
 <body>
 	<nav th:replace="fragments/menu.html"></nav>
-	<h1>Welkom in het huis van de Belgische bieren</h1>
-	<img alt="bieren" th:src='@{/images/bierhuis.jpg}'>
-	<p>We hebben momenteel <span th:text='${count}' th:remove='tag'></span> bieren</p>
+	<h1 th:text="#{greeting}"></h1>
+	<img th:attr="alt=#{altbeer}" th:src='@{/images/bierhuis.jpg}'>
+	<p th:text="#{beersinstock1} + ' ' + ${count} + ' ' + #{beersinstock2}"></p>
 </body>
 </html>
