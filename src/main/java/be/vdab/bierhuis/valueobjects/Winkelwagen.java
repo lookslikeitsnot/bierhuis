@@ -1,5 +1,6 @@
 package be.vdab.bierhuis.valueobjects;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,10 @@ public class Winkelwagen {
 
 	public Set<Winkelwagenlijn> getWinkelwagen() {
 		return winkelwagen;
+	}
+	
+	public BigDecimal getPrijs() {
+		return winkelwagen.stream().map(lijn -> lijn.getPrijs()).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 	
 	public boolean isEmpty() {

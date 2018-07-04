@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.bierhuis.services.BierService;
-import be.vdab.bierhuis.valueobjects.Adres;
+import be.vdab.bierhuis.valueobjects.WinkelwagenForm;
 
 @RestController
 @RequestMapping("/winkelwagen")
@@ -21,9 +21,6 @@ public class WinkelwagenController {
 	
 	@GetMapping
 	ModelAndView winkelwagen() {
-		return new ModelAndView(VIEW_WINKELWAGEN).addObject(new Adres());
+		return new ModelAndView(VIEW_WINKELWAGEN).addObject("winkelwagenForm", new WinkelwagenForm());
 	}
-
-	
-	
 }

@@ -4,21 +4,48 @@
 <body>
 	<nav th:replace="fragments/menu.html"></nav>
 	<h1>Winkelwagen</h1>
-	<div th:if="${session.winkelwagen != null and not session.winkelwagen.winkelwagen.isEmpty()}">
+	<div
+		th:if="${session.winkelwagen != null and not session.winkelwagen.winkelwagen.isEmpty()}">
 		<table>
-			<tr>
-				<th>Bier</th>
-				<th>Prijs</th>
-				<th>Aantal</th>
-				<th>Te betalen</th>
-			</tr>
-			<tr th:each="winkelwagenlijn : ${session.winkelwagen.winkelwagen}">
-				<td th:text="${winkelwagenlijn.bier.naam}">Bier</td>
-				<td th:text="${#numbers.formatCurrency(winkelwagenlijn.bier.prijs)}">Prijs</td>
-				<td th:text="${winkelwagenlijn.aantal}">Aantal</td>
-				<td th:text="${#numbers.formatCurrency(winkelwagenlijn.teBetalen)}">Te betalen</td>
-			</tr>
+			<thead>
+				<tr>
+					<th>Bier</th>
+					<th>Prijs</th>
+					<th>Aantal</th>
+					<th>Te betalen</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="winkelwagenlijn : ${session.winkelwagen.winkelwagen}">
+					<td th:text="${winkelwagenlijn.bier.naam}">Bier</td>
+					<td
+						th:text="${#numbers.formatCurrency(winkelwagenlijn.bier.prijs)}">Prijs</td>
+					<td th:text="${winkelwagenlijn.aantal}">Aantal</td>
+					<td th:text="${#numbers.formatCurrency(winkelwagenlijn.teBetalen)}">Te
+						betalen</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4"
+						th:text="'Totaal:' + ${#numbers.formatCurrency(session.winkelwagen.prijs)}"></td>
+				</tr>
+			</tfoot>
 		</table>
+		<form method='post' th:action="@{/winkelwagen}"
+			th:object='${winkelwagenForm}'>
+			<label>Naam </label><input th:field='*{naam}' autofocus='autofocus' />
+			<span th:if="${#fields.hasErrors('naam')}" th:errors='*{naam}'></span>
+			<label>Straat </label><input th:field='*{adres.straat}' /> <span
+				th:if="${#fields.hasErrors('straat')}" th:errors='*{straat}'></span>
+			<label>Huisnummer </label><input th:field='*{adres.huisnummer}' /> <span
+				th:if="${#fields.hasErrors('huisnummer')}" th:errors='*{huisnummer}'></span>
+			<label>Postcode </label><input th:field='*{adres.postcode}' /> <span
+				th:if="${#fields.hasErrors('postcode')}" th:errors='*{postcode}'></span>
+			<label>Gemeente </label><input th:field='*{adres.gemeente}' /> <span
+				th:if="${#fields.hasErrors('gemeente')}" th:errors='*{gemeente}'></span>
+			<input type='submit' value='Als bon bevestigen' />
+		</form>
 	</div>
 </body>
 </html>
