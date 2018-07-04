@@ -99,13 +99,6 @@ public class Bier implements Serializable {
 	public BigDecimal getPrijs() {
 		return prijs;
 	}
-	
-	public String getLocalPrijs() {
-		NumberFormat numberFormat =  NumberFormat.getCurrencyInstance(LocaleContextHolder.getLocale());
-		numberFormat.setCurrency(Currency.getInstance(Locale.GERMANY));
-		return numberFormat.format(prijs);
-		
-	}
 
 	public void setPrijs(BigDecimal prijs) {
 		this.prijs = prijs;
