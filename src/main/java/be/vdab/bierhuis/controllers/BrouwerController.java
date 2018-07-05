@@ -1,5 +1,7 @@
 package be.vdab.bierhuis.controllers;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import be.vdab.exceptions.BrouwerNietGevondenException;
 
 @RestController
 @RequestMapping("/brouwers")
+@EnableSpringDataWebSupport
 public class BrouwerController {
 	private final static String VIEW_BROUWERS = "brouwers/brouwers";
 	private final static String VIEW_BROUWER = "brouwers/brouwer";
@@ -22,8 +25,8 @@ public class BrouwerController {
 	}
 
 	@GetMapping
-	ModelAndView brouwers() {
-		return new ModelAndView(VIEW_BROUWERS).addObject("brouwers", brouwerService.findAll());
+	ModelAndView brouwers(Pageable pageable) {
+		return new ModelAndView(VIEW_BROUWERS).addObject("page", brouwerService.findAll(pageable));
 	}
 
 	@GetMapping("{brouwer}")

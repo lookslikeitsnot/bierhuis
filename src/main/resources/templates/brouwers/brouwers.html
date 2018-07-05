@@ -5,10 +5,19 @@
 	<nav th:replace="fragments/menu.html"></nav>
 	<h1 th:text="#{brouwers.brewers}">Brouwers</h1>
 	<table>
-		<tr th:each='brouwer : ${brouwers}'>
+		<tr th:each='brouwer : ${page.content}'>
 			<td><a th:href="@{'brouwers/{id}'(id=${brouwer.id})}"
 				th:text="${brouwer.naam} + ' (' +${brouwer.adres.gemeente}+')'">brouwer</a></td>
 		</tr>
 	</table>
+	<p>
+		<th:block class="pagineren"
+			th:each="pageNr: ${#numbers.sequence(1, page.totalPages)}">
+			<th:block th:if="${pageNr-1 == page.number}" th:text='${pageNr}'></th:block>
+			<th:block th:unless="${pageNr-1 == page.number}">
+				<a th:href="@{/brouwers (page=${pageNr-1})}" th:text='${pageNr}'></a>
+			</th:block>
+		</th:block>
+	</p>
 </body>
 </html>

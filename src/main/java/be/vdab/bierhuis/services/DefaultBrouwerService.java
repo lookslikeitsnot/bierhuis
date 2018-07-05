@@ -1,8 +1,9 @@
 package be.vdab.bierhuis.services;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +18,10 @@ public class DefaultBrouwerService implements BrouwerService {
 	public DefaultBrouwerService(BrouwerRepository brouwerRepository) {
 		this.brouwerRepository = brouwerRepository;
 	}
-	
+
 	@Override
-	public List<Brouwer> findAll(){
-		return brouwerRepository.findAll();
+	public Page<Brouwer> findAll(Pageable pageable) {
+		return brouwerRepository.findAll(pageable);
 	}
 
 	@Override
