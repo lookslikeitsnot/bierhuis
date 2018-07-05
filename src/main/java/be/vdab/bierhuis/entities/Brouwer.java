@@ -94,17 +94,17 @@ public class Brouwer implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) 
 			return true;
-		if (obj == null)
+		if (obj == null) 
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() != obj.getClass()) 
 			return false;
 		Brouwer other = (Brouwer) obj;
 		if (adres == null) {
 			if (other.adres != null)
 				return false;
-		} else if (!adres.equals(other.adres))
+		} else if (!adres.equals(other.adres)) 
 			return false;
 		if (naam == null) {
 			if (other.naam != null)

@@ -20,9 +20,9 @@ import be.vdab.bierhuis.valueobjects.Winkelwagenlijn;
 @SessionAttributes("winkelwagen")
 public class BierController {
 
-	private final static String VIEW = "index";
+	private final static String VIEW = "redirect:/";
 	private final static String VIEW_BIER = "bieren/bier";
-	private final static String VIEW_WINKELWAGEN = "redirect:/winkelwagen";
+	private final static String REDIRECT_WINKELWAGEN = "redirect:/winkelwagen";
 
 	@GetMapping
 	ModelAndView index() {
@@ -37,11 +37,13 @@ public class BierController {
 	@PostMapping("{bier}")
 	ModelAndView addBier(@PathVariable Bier bier, @Validated Winkelwagenlijn winkelwagenlijn, BindingResult bindingResult,
 			@ModelAttribute("winkelwagen") Winkelwagen winkelwagen) {
+		System.out.println("post bieren");
 		if (!bindingResult.hasErrors()) {
+			System.out.println("no binding errors");
 			winkelwagen.add(winkelwagenlijn);
-			return new ModelAndView(VIEW_WINKELWAGEN);
+			return new ModelAndView(REDIRECT_WINKELWAGEN);
 		}
-		return bier(bier);
+		return new ModelAndView(VIEW_BIER).addObject("bier", bier);
 	}
 
 	@ModelAttribute("winkelwagen")

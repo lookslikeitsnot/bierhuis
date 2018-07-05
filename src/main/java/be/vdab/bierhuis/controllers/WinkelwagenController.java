@@ -34,9 +34,6 @@ public class WinkelwagenController {
 	@PostMapping
 	ModelAndView create(@Validated WinkelwagenForm winkelwagenForm, BindingResult bindingResult,
 			@ModelAttribute("winkelwagen") Winkelwagen winkelwagen) {
-		if(winkelwagen.getWinkelwagen().isEmpty()) {
-			System.out.println("mandje is leeg");
-		}
 		if (!bindingResult.hasErrors()) {
 			bestelbonService.create(winkelwagen.toBestelbon(winkelwagenForm));
 			return new ModelAndView(VIEW_BEVESTIGD);

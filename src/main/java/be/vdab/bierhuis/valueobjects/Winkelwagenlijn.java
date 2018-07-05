@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
-import be.vdab.bierhuis.entities.Bestelbon;
 import be.vdab.bierhuis.entities.Bier;
 
 public class Winkelwagenlijn {
@@ -16,7 +15,7 @@ public class Winkelwagenlijn {
 	@Valid
 	private Bier bier;
 	@NotNull
-	@Min(1)
+	@Min(value=1)
 	private Integer aantal;
 
 	public Bier getBier() {
@@ -37,6 +36,10 @@ public class Winkelwagenlijn {
 
 	public void setAantal(Integer aantal) {
 		this.aantal = aantal;
+	}
+	
+	public void addAantal(Integer aantal) {
+		this.aantal += aantal;
 	}
 	
 	public void setBier(@PathVariable Bier bier) {
@@ -73,7 +76,9 @@ public class Winkelwagenlijn {
 			if (other.bier != null)
 				return false;
 		} else if (!bier.equals(other.bier))
+		{
 			return false;
+		}
 		return true;
 	}
 }

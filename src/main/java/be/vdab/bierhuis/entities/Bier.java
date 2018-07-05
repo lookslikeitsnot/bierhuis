@@ -2,9 +2,6 @@ package be.vdab.bierhuis.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.util.Currency;
-import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +17,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 import be.vdab.constraints.Naam;
@@ -37,10 +33,10 @@ public class Bier implements Serializable {
 	@NotNull
 	@Naam
 	private String naam;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "brouwerid")
 	private Brouwer brouwer;
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "soortid")
 	private Soort soort;
 	@NotNull

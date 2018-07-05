@@ -22,10 +22,8 @@
 					th:field='*{aantal}' autofocus='autofocus' /> <span
 					th:if="${#fields.hasErrors('*{aantal}')}" th:errors='*{aantal}'></span>
 			</dd>
-
 		</dl>
-		<input type='submit' value='Toevoegen' />
+		<input type='submit' th:value=#{bier.add} />
 	</form>
-
 </body>
 </html>

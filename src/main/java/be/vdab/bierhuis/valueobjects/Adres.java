@@ -121,8 +121,8 @@ public class Adres implements Serializable {
 		if (straat == null) {
 			if (other.straat != null)
 				return false;
-		} else if (!straat.equals(other.straat))
-			return false;
+		} else if (!straat.equals(other.straat)) {
+			return false;}
 		return true;
 	}
 }

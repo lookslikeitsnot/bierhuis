@@ -15,6 +15,13 @@ public class Winkelwagen {
 	}
 
 	public void add(Winkelwagenlijn winkelwagenlijn) {
+		if(winkelwagen.contains(winkelwagenlijn)) {
+			for(Winkelwagenlijn lijn : winkelwagen) {
+				if(lijn.equals(winkelwagenlijn)) {
+					lijn.addAantal(winkelwagenlijn.getAantal());
+				}
+			}
+		}
 		winkelwagen.add(winkelwagenlijn);
 	}
 
@@ -32,8 +39,6 @@ public class Winkelwagen {
 		bestelbon.setNaam(winkelwagenForm.getNaam());
 		bestelbon.setBestelbonlijnen(
 				winkelwagen.stream().map(lijn -> lijn.toBestelbonlijn()).collect(Collectors.toSet()));
-		System.out.println("aantal winkelwagenlijnen : " + winkelwagen.size());
-		System.out.println("aantal bestelbonlijnen : " + bestelbon.getBestelbonlijnen().size());
 		return bestelbon;
 	}
 
