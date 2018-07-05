@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
+import be.vdab.bierhuis.entities.Bestelbon;
 import be.vdab.bierhuis.entities.Bier;
 
 public class Winkelwagenlijn {
@@ -45,6 +46,10 @@ public class Winkelwagenlijn {
 	@Override
 	public String toString() {
 		return "Winkelwagenlijn [bier=" + bier.getNaam() + ", aantal=" + aantal + "]";
+	}
+	
+	public Bestelbonlijn toBestelbonlijn() {
+		return new Bestelbonlijn(bier, aantal, bier.getPrijs());
 	}
 
 	@Override

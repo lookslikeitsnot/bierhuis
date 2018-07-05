@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -15,16 +13,12 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
-import be.vdab.bierhuis.entities.Bestelbon;
 import be.vdab.bierhuis.entities.Bier;
 
 @Embeddable
 public class Bestelbonlijn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "bestelbonid")
-	private Bestelbon bestelbon;
 	@OneToOne()
 	@JoinColumn(name = "bierid")
 	private Bier bier;
@@ -40,18 +34,11 @@ public class Bestelbonlijn implements Serializable {
 	public Bestelbonlijn() {
 	}
 	
-	public Bestelbonlijn(Bestelbon bestelbon, Bier bier, @NotNull @Min(0) Integer aantal,
+	public Bestelbonlijn(Bier bier, @NotNull @Min(0) Integer aantal,
 			@NotNull @Min(0) @Digits(integer = 10, fraction = 2) BigDecimal prijs) {
-		this.bestelbon = bestelbon;
 		this.bier = bier;
 		this.aantal = aantal;
 		this.prijs = prijs;
-	}
-
-	
-	
-	public Bestelbon getBestelbon() {
-		return bestelbon;
 	}
 
 	public Bier getBier() {
@@ -70,7 +57,6 @@ public class Bestelbonlijn implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bestelbon == null) ? 0 : bestelbon.hashCode());
 		result = prime * result + ((bier == null) ? 0 : bier.hashCode());
 		return result;
 	}
@@ -84,11 +70,6 @@ public class Bestelbonlijn implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Bestelbonlijn other = (Bestelbonlijn) obj;
-		if (bestelbon == null) {
-			if (other.bestelbon != null)
-				return false;
-		} else if (!bestelbon.equals(other.bestelbon))
-			return false;
 		if (bier == null) {
 			if (other.bier != null)
 				return false;
