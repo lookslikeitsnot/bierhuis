@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 
 import be.vdab.bierhuis.valueobjects.Adres;
 import be.vdab.bierhuis.valueobjects.Bestelbonlijn;
-import be.vdab.constraints.Naam;
+import be.vdab.constraints.StringForm;
 
 @Entity
 @Table(name = "bestelbonnen")
@@ -31,8 +31,7 @@ public class Bestelbon implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@NotNull
-	@Naam
+	@StringForm
 	private String naam;
 	@Valid
 	@Embedded

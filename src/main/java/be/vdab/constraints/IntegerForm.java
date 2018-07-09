@@ -10,9 +10,11 @@ import javax.validation.Payload;
 
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = NaamValidator.class)
-public @interface Naam {
-	String message() default "{be.vdab.constraints.Naam}";
+@Constraint(validatedBy = IntegerFormValidator.class)
+public @interface IntegerForm {
+	int min() default 0;
+	int max() default Integer.MAX_VALUE;
+	String message() default "{be.vdab.constraints.integerForm.message}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

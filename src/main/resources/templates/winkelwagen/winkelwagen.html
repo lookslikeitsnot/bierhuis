@@ -41,7 +41,7 @@
 				<dl>
 					<dt th:text='#{winkelwagen.name}'>Naam</dt>
 					<dd>
-						<input th:field='*{naam}' autofocus='autofocus' /><span
+						<input th:field='*{naam}' autofocus='autofocus' /> <span
 							th:if="${#fields.hasErrors('naam')}" th:errors='*{naam}'></span>
 					</dd>
 					<dt th:text='#{winkelwagen.street}'>Straat</dt>
@@ -58,7 +58,7 @@
 					</dd>
 					<dt th:text='#{winkelwagen.postal}'>Postcode</dt>
 					<dd>
-						<input th:field='*{adres.postcode}' /> <span
+						<input type="number" th:field='*{adres.postcode}' /> <span
 							th:if="${#fields.hasErrors('adres.postcode')}"
 							th:errors='*{adres.postcode}'></span>
 					</dd>
@@ -69,7 +69,7 @@
 							th:errors='*{adres.gemeente}'></span>
 					</dd>
 				</dl>
-				<input type='submit' th:value=#{winkelwagen.confirm} />
+				<input type='submit' th:value='#{winkelwagen.confirm}' />
 			</form>
 		</article>
 	</div>

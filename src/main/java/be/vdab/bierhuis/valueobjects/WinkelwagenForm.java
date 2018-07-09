@@ -1,17 +1,11 @@
 package be.vdab.bierhuis.valueobjects;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
-
-import be.vdab.constraints.Naam;
+import be.vdab.constraints.StringForm;
 
 public class WinkelwagenForm {
-	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@NotNull
-	@Naam
+	@StringForm(message = "{error.stringForm.naam}")
 	private String naam;
 	@Valid
 	private Adres adres;

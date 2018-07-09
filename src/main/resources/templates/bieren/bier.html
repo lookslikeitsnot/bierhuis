@@ -18,7 +18,7 @@
 			<dt th:text="#{bier.quantity}">Aantal</dt>
 			<dd>
 				<input type="hidden" name="bier" th:value="${bier.id}" /> 
-				<input
+				<input type="number"
 					th:field='*{aantal}' autofocus='autofocus' /> <span
 					th:if="${#fields.hasErrors('*{aantal}')}" th:errors='*{aantal}'></span>
 			</dd>

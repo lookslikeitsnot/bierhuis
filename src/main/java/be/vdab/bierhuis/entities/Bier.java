@@ -19,7 +19,8 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.format.annotation.NumberFormat.Style;
 
-import be.vdab.constraints.Naam;
+import be.vdab.constraints.IntegerForm;
+import be.vdab.constraints.StringForm;
 
 @Entity
 @Table(name = "bieren")
@@ -29,9 +30,7 @@ public class Bier implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@NotNull
-	@Naam
+	@StringForm
 	private String naam;
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "brouwerid")
@@ -39,8 +38,7 @@ public class Bier implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "soortid")
 	private Soort soort;
-	@NotNull
-	@Min(0)
+	@IntegerForm
 	private Integer alcohol;
 	@org.springframework.format.annotation.NumberFormat(style = Style.NUMBER)
 	@NotNull

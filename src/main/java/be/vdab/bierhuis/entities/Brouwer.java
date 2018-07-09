@@ -13,15 +13,12 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.SafeHtml;
-import org.hibernate.validator.constraints.SafeHtml.WhiteListType;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
 import be.vdab.bierhuis.valueobjects.Adres;
-import be.vdab.constraints.Naam;
+import be.vdab.constraints.StringForm;
 
 @Entity
 @Table(name = "brouwers")
@@ -30,9 +27,7 @@ public class Brouwer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@SafeHtml(whitelistType = WhiteListType.NONE)
-	@NotNull
-	@Naam
+	@StringForm
 	private String naam;
 	@Valid
 	@Embedded

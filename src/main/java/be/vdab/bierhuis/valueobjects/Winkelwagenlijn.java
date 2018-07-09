@@ -3,19 +3,18 @@ package be.vdab.bierhuis.valueobjects;
 import java.math.BigDecimal;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
 import be.vdab.bierhuis.entities.Bier;
+import be.vdab.constraints.IntegerForm;
 
 public class Winkelwagenlijn {
 	@NotNull
 	@Valid
 	private Bier bier;
-	@NotNull
-	@Min(value=1)
+	@IntegerForm(min = 1, message = "{error.integerForm.aantal}")
 	private Integer aantal;
 
 	public Bier getBier() {
@@ -37,11 +36,11 @@ public class Winkelwagenlijn {
 	public void setAantal(Integer aantal) {
 		this.aantal = aantal;
 	}
-	
+
 	public void addAantal(Integer aantal) {
 		this.aantal += aantal;
 	}
-	
+
 	public void setBier(@PathVariable Bier bier) {
 		this.bier = bier;
 	}
@@ -50,7 +49,7 @@ public class Winkelwagenlijn {
 	public String toString() {
 		return "Winkelwagenlijn [bier=" + bier.getNaam() + ", aantal=" + aantal + "]";
 	}
-	
+
 	public Bestelbonlijn toBestelbonlijn() {
 		return new Bestelbonlijn(bier, aantal, bier.getPrijs());
 	}
@@ -75,8 +74,7 @@ public class Winkelwagenlijn {
 		if (bier == null) {
 			if (other.bier != null)
 				return false;
-		} else if (!bier.equals(other.bier))
-		{
+		} else if (!bier.equals(other.bier)) {
 			return false;
 		}
 		return true;

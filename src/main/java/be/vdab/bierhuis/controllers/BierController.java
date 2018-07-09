@@ -37,9 +37,7 @@ public class BierController {
 	@PostMapping("{bier}")
 	ModelAndView addBier(@PathVariable Bier bier, @Validated Winkelwagenlijn winkelwagenlijn, BindingResult bindingResult,
 			@ModelAttribute("winkelwagen") Winkelwagen winkelwagen) {
-		System.out.println("post bieren");
 		if (!bindingResult.hasErrors()) {
-			System.out.println("no binding errors");
 			winkelwagen.add(winkelwagenlijn);
 			return new ModelAndView(REDIRECT_WINKELWAGEN);
 		}
