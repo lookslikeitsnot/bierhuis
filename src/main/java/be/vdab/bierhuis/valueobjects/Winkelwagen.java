@@ -43,7 +43,7 @@ public class Winkelwagen {
 	}
 
 	public BigDecimal getPrijs() {
-		return winkelwagen.stream().map(lijn -> lijn.getPrijs()).reduce(BigDecimal.ZERO, BigDecimal::add);
+		return winkelwagen.stream().map(lijn -> lijn.getTeBetalen()).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
 	public boolean isEmpty() {

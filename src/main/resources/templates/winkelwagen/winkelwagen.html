@@ -30,7 +30,7 @@
 				<tfoot>
 					<tr>
 						<td colspan="4"
-							th:text="'Totaal:' + ${#numbers.formatCurrency(session.winkelwagen.prijs)}"></td>
+							th:text="#{winkelwagen.total} + ${#numbers.formatCurrency(session.winkelwagen.prijs)}"></td>
 					</tr>
 				</tfoot>
 			</table>

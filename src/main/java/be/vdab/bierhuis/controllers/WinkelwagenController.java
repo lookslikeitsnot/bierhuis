@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import be.vdab.bierhuis.entities.Bestelbon;
 import be.vdab.bierhuis.services.BestelbonService;
 import be.vdab.bierhuis.valueobjects.Winkelwagen;
 import be.vdab.bierhuis.valueobjects.WinkelwagenForm;
@@ -35,8 +36,9 @@ public class WinkelwagenController {
 	ModelAndView create(@Validated WinkelwagenForm winkelwagenForm, BindingResult bindingResult,
 			@ModelAttribute("winkelwagen") Winkelwagen winkelwagen) {
 		if (!bindingResult.hasErrors()) {
-			bestelbonService.create(winkelwagen.toBestelbon(winkelwagenForm));
-			return new ModelAndView(VIEW_BEVESTIGD);
+			Bestelbon bestelbon = winkelwagen.toBestelbon(winkelwagenForm);
+			bestelbonService.create(bestelbon);
+			return new ModelAndView(VIEW_BEVESTIGD).addObject("bestelbonid", bestelbon.getId());
 		}
 		return new ModelAndView(VIEW_WINKELWAGEN);
 	}

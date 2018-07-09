@@ -5,6 +5,6 @@
 	<nav th:replace="fragments/menu.html"></nav>
 	<h1 th:text="#{greeting}"></h1>
 	<img th:attr="alt=#{altbeer}" th:src='@{/images/bierhuis.jpg}'>
-	<p th:text="#{beersinstock1} + ' ' + ${count} + ' ' + #{beersinstock2}"></p>
+	<p th:text="#{beersinstock(${count})}"></p>
 </body>
 </html>
